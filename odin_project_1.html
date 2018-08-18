@@ -1,3 +1,67 @@
 <!DOCTYPE html>
 <html>
+<head>
+  <meta charset="utf-8">
+  <meta title="odin project 1">
+</head>
+<body>
+
+  <script>
+    ran = Math.floor(Math.random()*3);
+    
+    function computerplay(){
+      switch(ran){
+        case 0:
+          return "rock";
+          break;
+        case 1:
+          return "scissor";
+          break;
+        case 2:
+          return "paper";
+          break;
+      }
+    }
+
+    var playerSelection = prompt("Please type your choice. Paper, Scissors or stone?");
+    
+    function game(){
+      var computerSelection = computerplay();
+
+      if(playerSelection == computerSelection){
+        alert("You tied with the computer.");
+      }else{
+        
+        switch(true){
+          case playerSelection.toLowerCase() == "paper" :
+            if(computerSelection == "scissor"){
+              alert("You lose.");
+            }else{
+              alert("You win.");
+            }
+            break;
+
+          case playerSelection.toLowerCase() == "scissor" :
+            if(computerSelection == "stone"){
+              alert("You lose.");
+            }else{
+              alert("You win.");
+            }
+            break;  
+
+          case playerSelection.toLowerCase() == "stone" :
+            if(computerSelection == "paper"){
+              alert("You lose.");
+            }else{
+              alert("You win");
+            }
+            break;
+        }
+      }
+    }
+    
+    game();
+    
+  </script>
+</body>
 <html>
