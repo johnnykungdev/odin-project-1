@@ -6,6 +6,12 @@
 </head>
 <body>
 
+  <div>
+    <button onclick = "PPaper()">Paper</button>
+    <button onclick = "PScissor()">Scissor</button>
+    <button onclick = "PStone()">Stone</button>
+  </div>
+
   <script>
     /* Make function of playing paperscissorstone for one round, note that **ran = Math.floor(Math.random()*3) shoule be put in the function
     of playround, otherwise when execute in the function game(), ran wont get new values.*/
@@ -36,7 +42,6 @@
       if(playerSelection == computerSelection){
         alert("You tied with the computer.");
       }else{
-        
         switch(true){
           case playerSelection.toLowerCase() == "paper" :
             if(computerSelection == "scissor"){
@@ -68,7 +73,8 @@
       }
     }
     
-    /* make function game to play paper scissor stone until player or computer win five times.*/
+    /* make function game() to play paper scissor stone until player or computer win five times.*/
+    /* coded by Johnny 2018.08.21*/ 
 
     function game(){
       var playerwin = 0;
