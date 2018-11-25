@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta title="odin project 1">
+  <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+  <div>
+    <button class="choice" id="paper">Paper</button>
+    <button class="choice" id="scissor">Scissor</button>
+    <button class="choice" id="stone">Stone</button>
+
+    <div id="res0">
+      <p id="roundResult"></p>
+      <p id="playerTotal"></p>
+      <p id="comTotal"></p>
+      <p id="finalResult"></p>
+    </div>
+  </div>
+</body>
+
+<script>
+  playerScore = 0;
+  comScore = 0;
+
+    /* Make function of playing paperscissorstone for one round, note that **ran = Math.floor(Math.random()*3) shoule be put in the function
+    of playround, otherwise when execute in the function game(), ran wont get new values.*/
+    
+    function playround(playerSelection){
+      
+      /* Decide what computer's decistion is.*/
+      ran = Math.floor(Math.random()*3);
+    
+      function computerplay(){
+       switch(ran){
+          case 0:
+            return "rock";
+            break;
+          case 1:
+            return "scissor";
+            break;
+          case 2:
+            return "paper";
+            break;
+        }
+      }
+
+      var computerSelection = computerplay();
+      var result;
+
+      if(playerSelection == computerSelection){
+        alert("You tied with the computer.");
+      }else{
+        switch(true){
+          case playerSelection.toLowerCase() == "paper" :
+            if(computerSelection == "scissor"){
+              alert("You lose. The computer chose scissor.");
+              return 1;
+            }else{
+              alert("You win. The computer chose stone.");
+              return 2;
+            }
+
+          case playerSelection.toLowerCase() == "scissor" :
+            if(computerSelection == "stone"){
+              alert("You lose. The computer chose stone..");
+              return 1;
+            }else{
+              alert("You win. The computer chose paper.");
+              return 2;
+            }
+
+          case playerSelection.toLowerCase() == "stone" :
+            if(computerSelection == "paper"){
+              alert("You lose. The computer chose paper.");
+              return 1;
+            }else{
+              alert("You win. The computer chose scissor.");
+              return 2;
+            }
+        }
+      }
+    }
+    
+
+    window.onload = function (){
+      const buttons = document.querySelectorAll('.choice');
+
+      buttons.forEach(function(button){
+        button.addEventListener('click', function(e){
+          var playerSelection = e.target.id
+          var round = playround(playerSelection);
+          
+          if (round == 1){
+            comScore += 1;
+          }else if (round == 2){
+            playerScore += 1;
+          }
+          
+          playerTotal = document.getElementById('playerTotal');
+          comTotal = document.getElementById('comTotal');
+          finalResult = document.getElementById('finalResult');
+          
+          playerTotal.textContent = "player Total" + playerScore;
+          comTotal.textContent = "computer Total" + comScore;
+          
+          if (playerScore == 5){
+            finalResult.textContent = `You win th e computer by ${playerScore} versus ${comScore}`;
+            playerScore = 0;
+            comScore = 0;
+          }else if (comScore ==5){
+            finalResult.textContent = `Computer wins you by ${comScore} versus ${playerScore}`;
+            playerScore = 0;
+            comScore = 0;
+          }
+
+          
+
+        })
+      })
+    }
+  </script>
+<html>
